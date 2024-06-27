@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 
 void main() => runApp(MaterialApp(
+  initialRoute: '/menu',
     routes: {
       '/' :(context) => Dashboard(),
       '/menu' : (context) => Menu(),
