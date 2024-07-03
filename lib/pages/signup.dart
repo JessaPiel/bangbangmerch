@@ -1,3 +1,4 @@
+import 'package:bangbangmerch1/pages/login.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,6 +14,14 @@ class _SignupState extends State<Signup> {
   String name = '';
   String email = '';
   String password = '';
+
+  void _navigateToLogin(){
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Login())
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +130,29 @@ class _SignupState extends State<Signup> {
                            foregroundColor: Colors.black,
                          ),
                        ),
-                     ],
+                     SizedBox(height: 20),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: <Widget>[
+                         Text(
+                             'Already have an Account?',
+                             style: TextStyle(
+                               color: Colors.black,
+                             )
+                         ),
+                         InkWell(
+                           child: Text(
+                             'Log In',
+                             style: TextStyle(
+                               color: Colors.blue,
+                               decoration: TextDecoration.underline,
+                             ),
+                           ),
+                           onTap: _navigateToLogin,
+                         ),
+                       ],
+                     ),
+         ],
                    ),
                  ],
                ),
@@ -129,6 +160,7 @@ class _SignupState extends State<Signup> {
            ],
          ),
        ),
+
      ),
     );
   }

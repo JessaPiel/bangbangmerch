@@ -30,7 +30,7 @@ class _LoginPageState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.purpleAccent,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 0),
@@ -103,23 +103,22 @@ class _LoginPageState extends State<Login> {
                         color: Colors.black,
                )
                    ),
+                   InkWell(
+                     child: Text(
+                       'Sign Up',
+                       style: TextStyle(
+                         color: Colors.blue,
+                         decoration: TextDecoration.underline,
+                       ),
+                     ),
+                     onTap: _navigateToSignup,
+                   ),
                  ],
                ),
-                InkWell(
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  onTap: _navigateToSignup,
-                ),
                   ],
                 ),
          ),
   ],
-
           ),
         ),
       ),

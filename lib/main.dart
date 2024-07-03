@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/login',
+  initialRoute: '/menu',
     routes: {
       '/' :(context) => Dashboard(),
       '/menu' : (context) => Menu(),

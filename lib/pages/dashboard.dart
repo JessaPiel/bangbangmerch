@@ -15,6 +15,7 @@ class _DashboardState extends State<Dashboard> {
       body: Container(
         child: SafeArea(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
                 children: [
                 ElevatedButton(
                 onPressed: (){
@@ -28,6 +29,18 @@ class _DashboardState extends State<Dashboard> {
                 },
                   child: Text('go to profile'),
                 ),
+                  ElevatedButton(
+                    onPressed: (){
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    child: Text('go to login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: (){
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                    child: Text('go to signup'),
+                  ),
               ],
             ),
           ),
