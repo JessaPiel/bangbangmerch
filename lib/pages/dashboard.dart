@@ -11,48 +11,57 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purpleAccent,
-      body: Container(
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ElevatedButton(
-                onPressed: (){
-                  Navigator.pushNamed(context, '/menu');
-                },
-                child: Text(
-                  'Go to Menu',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-              ),
-
-              ElevatedButton(
-                onPressed: (){
-                  Navigator.pushNamed(context, '/profile');
-                },
-                child: Text(
-                  'Go to Profile',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-
-                ),
-              ),
-
-            ],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.purpleAccent,
+        foregroundColor: Colors.white,
+        title: Text("Dashboard",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
-
-
-
         ),
+        centerTitle: true,
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 3.0,
+        onTap: (int val){
+          switch (val){
+            case 0:
+              Navigator.pushNamed(context, '/');
+              break;
+            case 1:
+              Navigator.pushNamed(context, '/menu');
+              break;
+            case 2:
+              Navigator.pushNamed(context, '/profile');
+              break;
+          }
+        },
+        currentIndex: 0,
+        selectedItemColor: Colors.purple[600],
+        items: [
+      BottomNavigationBarItem(
+      icon: Icon(Icons.home,
+        color: Colors.brown[900],
+      ),
+
+        label: 'Home'
+    ),
+      BottomNavigationBarItem(
+      icon: Icon(Icons.paste,
+        color: Colors.brown[900],
+    ),
+    label: 'Products'
+    ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person_pin,
+          color: Colors.brown[900],
+    ),
+    label: 'Profile'
+    ),
+    ]
+    ),
     );
   }
 }
