@@ -23,6 +23,17 @@ class _DashboardState extends State<Dashboard> {
         ),
         centerTitle: true,
       ),
+
+      body: Column(
+        children: <Widget>[
+          SizedBox(height: 20.0),
+          Image.asset(
+            'assets/bangbanglogo.png',
+            height: 200.0,
+            width: double.infinity,
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 3.0,
         onTap: (int val){

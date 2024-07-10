@@ -7,7 +7,7 @@ import 'package:mobile_appfront/pages/signup.dart';
 
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/login',
+  initialRoute: '/',
     routes: {
       '/' :(context) => Dashboard(),
       '/menu' : (context) => Menu(),
