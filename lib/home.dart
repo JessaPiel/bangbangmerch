@@ -5,9 +5,9 @@ class Home extends StatefulWidget {
 
   @override
   State<Home> createState() => _HomeState();
-  }
+}
 
-  class _HomeState extends State<Home> {
+class _HomeState extends State<Home> {
   int year = 0;
 
   @override
@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('User Profile'),
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Colors.purpleAccent,
         centerTitle: true,
       ),
       body: Padding(
@@ -30,8 +30,9 @@ class Home extends StatefulWidget {
               children: <Widget>[
                 Center(
                   child: CircleAvatar(
-                    child: Image.asset('assets/5907202.png'),
-                    radius: 80.0,
+                    backgroundImage: AssetImage('assets/5907202.png'),
+                    backgroundColor: Colors.white,
+                    radius: 70.0,
                   ),
                 ),
                 Divider(
@@ -42,8 +43,8 @@ class Home extends StatefulWidget {
                 Row(
                   children: [
                     Icon(
-                        Icons.person_3,
-                      color: Colors.deepPurpleAccent,
+                      Icons.person_3,
+                      color: Colors.purple,
 
                     ),
                     SizedBox(width: 3.0,),
@@ -70,9 +71,8 @@ class Home extends StatefulWidget {
                 SizedBox(height: 30.0,),
                 Row(
                   children: [
-
                     Icon(Icons.calendar_month,
-                    color: Colors.deepPurpleAccent,
+                      color: Colors.purple,
                     ),
                     SizedBox(width: 3.0,),
 
@@ -99,7 +99,7 @@ class Home extends StatefulWidget {
                 Row(
                   children: [
                     Icon(Icons.email,
-                      color: Colors.deepPurpleAccent,
+                      color: Colors.purple,
                     ),
                     SizedBox(width: 3.0,),
                     Text(
@@ -126,14 +126,21 @@ class Home extends StatefulWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ElevatedButton(
-                    onPressed: (){
-                      setState(() {
-                        year += 1;
-                      });
-                    },
-                    child: Text('Add Year'),
+                  onPressed: (){
+                    setState(() {
+                      year += 1;
+                    });
+                  },
+                  child: Text(
+                    'Add Year',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
+                  ),
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.pinkAccent[100]),
+                    backgroundColor: WidgetStateProperty.all(Colors.purple[400]),
                   ),
                 ),
               ],
@@ -145,6 +152,3 @@ class Home extends StatefulWidget {
     );
   }
 }
-
-
-

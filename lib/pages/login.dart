@@ -1,124 +1,145 @@
 import 'package:flutter/material.dart';
-import 'signup.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
 
   @override
-  State<Login> createState() => _LoginPageState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginPageState extends State<Login> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+class _LoginState extends State<Login> {
+  final formKey = GlobalKey<FormState>();
+  String email = '';
+  String password = '';
+  bool _obscure = true;
+  IconData _obscureIcon = Icons.visibility_off;
 
-  void _login() {
-    if (_formKey.currentState!.validate()) {
-      print('Email: ${_emailController.text}');
-      print('Password: ${_passwordController.text}');
-    }
-  }
-
-  void _navigateToSignup(){
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Signup())
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purpleAccent,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 0),
+          padding: EdgeInsets.fromLTRB(30.0, 60.0, 30.0, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-            Text(
-            'Welcome Back!',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              letterSpacing: 2.0,
-              fontSize: 24.5,
-            ),
-          ),
-          SizedBox(height: 30.0),
-         Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 30.0),
-                TextFormField(
-                  decoration:InputDecoration(
-                    label: Text('Email'),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0)
+              Text(
+                'Welcome!',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2.0,
+                  fontSize: 25.5,
+                ),
+              ),
+              SizedBox(height: 10.0,),
+              Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        label: Text('Email'),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0)
+
+                        ),
+
+                      ),
+                      validator: (value){
+                        if(value == null || value.isEmpty){
+                          return 'Please provide a valid email';
+                        }
+                        return null;
+                      },
+                      onSaved: (value){
+                        email = value!;
+                      },
                     ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 20.0,),
-                TextFormField(
-                  obscureText: true,
-                  decoration:InputDecoration(
-                    label: Text('Password'),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0)
+                    SizedBox(height: 30.0,),
+                    TextFormField(
+                      obscureText: _obscure,
+                      decoration: InputDecoration(
+                        label: Text('Password'),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.visibility_off_outlined),
+                          onPressed: (){
+                            setState(() {
+                              _obscure=!_obscure;
+                              if(_obscure){
+                                _obscureIcon = Icons.visibility_off;
+                              }else{
+                                _obscureIcon = Icons.visibility_off;
+                              }
+                            });
+                          },
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0)
+                        ),
+                      ),
+                      validator: (value){
+                        if(value == null || value.isEmpty){
+                          return 'Please provide a password';
+                        }
+                        if(value.length < 8){
+                          return 'Password should be atleast 8 characters long';
+                        }
+                        if(value.length > 20){
+                          return 'Password should be atleast 20 characters long';
+                        }
+                        return null;
+                      },
+                      onSaved: (value){
+                        password = value!;
+                      },
                     ),
-                  ),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
-                      return 'Please provide a Password';
-                    }
-                    if (value.length < 8){
-                      return 'Password should be at least 8 characters long';
-                    }
-                    if (value.length > 20){
-                      return 'Password must be 20 characters long';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _login,
-                  child: Text('Login'),
-                ),
-                SizedBox(height: 20),
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children: <Widget>[
-                   Text(
-                     'Don\'t have an Account?',
-                         style: TextStyle(
-                        color: Colors.black,
-               )
-                   ),
-                   InkWell(
-                     child: Text(
-                       'Sign Up',
-                       style: TextStyle(
-                         color: Colors.blue,
-                         decoration: TextDecoration.underline,
-                       ),
-                     ),
-                     onTap: _navigateToSignup,
-                   ),
-                 ],
-               ),
+                    SizedBox(height: 30.0,),
+                    ElevatedButton(
+                      onPressed: (){
+                        if(formKey.currentState!.validate()){
+                          formKey.currentState!.save();
+                          print(email);
+                          print(password);
+                          Navigator.pushReplacementNamed(context, '/');
+
+                        }
+                      },
+                      child: Text('Log In'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.purple[400],
+                        foregroundColor: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 30.0,),
+                    Row(
+                      children: [
+                        Text(
+                          'Don`t have an account?',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(width: 5.0,),
+                        InkWell(
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+
+                              color: Colors.blue,
+                            ),
+                          ),
+                          onTap: ()=> Navigator.popAndPushNamed(context, '/signup'),
+                        )
+                      ],
+                    )
                   ],
                 ),
-         ),
-  ],
+              ),
+            ],
           ),
         ),
       ),

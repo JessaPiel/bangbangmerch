@@ -11,42 +11,48 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurpleAccent,
+      backgroundColor: Colors.purpleAccent,
       body: Container(
         child: SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-                children: [
-                ElevatedButton(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ElevatedButton(
                 onPressed: (){
-        Navigator.pushNamed(context, '/menu');
-        },
-          child: Text('go to menu'),
-        ),
-                ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context, '/profile');
+                  Navigator.pushNamed(context, '/menu');
                 },
-                  child: Text('go to profile'),
+                child: Text(
+                  'Go to Menu',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                  ElevatedButton(
-                    onPressed: (){
-                      Navigator.pushNamed(context, '/login');
-                    },
-                    child: Text('go to login'),
+
+              ),
+
+              ElevatedButton(
+                onPressed: (){
+                  Navigator.pushNamed(context, '/profile');
+                },
+                child: Text(
+                  'Go to Profile',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
                   ),
-                  ElevatedButton(
-                    onPressed: (){
-                      Navigator.pushNamed(context, '/signup');
-                    },
-                    child: Text('go to signup'),
-                  ),
-              ],
-            ),
+
+                ),
+              ),
+
+            ],
           ),
+
+
+
         ),
+      ),
     );
-
   }
-
 }
